@@ -1,0 +1,75 @@
+# Wordpress - ignore core, configuration, examples, uploads and logs.
+# https://github.com/github/gitignore/blob/main/WordPress.gitignore
+
+# Core
+#
+# Note: if you want to stage/commit WP core files
+# you can delete this whole section/until Configuration.
+/wp-admin/
+/wp-content/index.php
+/wp-content/languages
+/wp-content/plugins/
+/wp-content/plugins/woocommerce
+/wp-content/plugins/hello.php
+/wp-content/plugins/index.php
+/wp-content/mu-plugins/
+/wp-content/backups-dup-lite
+/wp-content/wp-rocket-config
+/wp-content/wflogs
+/wp-content/advanced-cache.php
+/wp-content/wp-defender-secrets.php
+/wp-content/themes/index.php
+/wp-includes/
+
+/index.php
+/license.txt
+/readme.html
+/wp-*.php
+/xmlrpc.php
+/.tmb
+/.vscode
+/.well-known
+/adminer.sql
+/adminera.php
+/readme.b77c65760bb5dc4660b82f4676b77ccf.html
+/wordfence-waf.php
+/nginx.conf
+
+# Configuration
+wp-config.php
+
+# Example themes
+/wp-content/themes/twentytwentythree
+/wp-content/themes/twentytwentytwo
+/wp-content/themes/twentytwentyfour/assets
+/wp-content/themes/twentytwentyfour/parts
+/wp-content/themes/twentytwentyfour/patterns
+/wp-content/themes/twentytwentyfour/styls
+/wp-content/themes/twentytwentyfour/templates
+/wp-content/themes/twentytwentyfour/screenshot.png
+/wp-content/themes/twentytwentyfour/style.css
+/wp-content/themes/twentytwentyfour/theme.json
+
+# Example plugin
+/wp-content/plugins/hello.php
+
+# Uploads
+/wp-content/uploads/
+
+# Log files
+*.log
+
+# htaccess
+/.htaccess
+
+# All plugins
+#
+# Note: If you wish to whitelist plugins,
+# uncomment the next line
+#/wp-content/plugins
+
+# All themes
+#
+# Note: If you wish to whitelist themes,
+# uncomment the next line
+#/wp-content/themes
