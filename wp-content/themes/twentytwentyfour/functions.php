@@ -207,7 +207,10 @@ add_action( 'init', 'twentytwentyfour_pattern_categories' );
 
 
 
-//enqueue scripts from custom-price-slider.js
+
+
+
+//enqueue scripts
 function enqueue_custom_scripts() {
     wp_enqueue_script('jquery-ui-slider');
     wp_enqueue_script('custom-price-slider', get_stylesheet_directory_uri() . '/custom-price-slider.js', array('jquery', 'jquery-ui-slider'), null, true);
@@ -216,71 +219,20 @@ function enqueue_custom_scripts() {
         'ajax_url' => admin_url('admin-ajax.php'), 
     ));
 
-    wp_enqueue_style('jquery-ui-style', 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css');
+	wp_enqueue_style('jquery-ui-style', 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css');
+    wp_enqueue_script('custom-ajax-filter', get_template_directory_uri() . '/custom-ajax-filter.js', array('jquery'), '1.0', true );
+
+    wp_localize_script('custom-ajax-filter', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' )));
+
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
-//add price range slider in shop page.
-function custom_price_range_slider() {
-    get_template_part('price-range');
-}
-add_action('woocommerce_before_shop_loop', 'custom_price_range_slider');
-
-//ajax for get the products lies between the price range.
-add_action('wp_ajax_filter_products_by_price', 'filter_products_by_price');
-add_action('wp_ajax_nopriv_filter_products_by_price', 'filter_products_by_price');
-
-function filter_products_by_price() {
-    $min_price = isset($_POST['min_price']) ? floatval($_POST['min_price']) : 0;
-    $max_price = isset($_POST['max_price']) ? floatval($_POST['max_price']) : 50000;
-
-    $args = array(
-        'post_type' => 'product',
-        'posts_per_page' => -1,
-        'meta_query' => array(
-            array(
-                'key' => '_price',
-                'value' => array($min_price, $max_price),
-                'type' => 'numeric',
-                'compare' => 'BETWEEN'
-            )
-        )
-    );
-
-    $query = new WP_Query($args);
-
-    if ($query->have_posts()) {
-        ob_start();
-        while ($query->have_posts()) {
-            $query->the_post();
-            wc_get_template_part('content', 'product');
-        }
-        $response = ob_get_clean();
-    } else {
-        $response = __('No products found', 'your-text-domain');
-    }
-
-    wp_reset_postdata();
-
-    echo $response;
-    die();
-}
-
-
-
-
-// Enqueue script for AJAX and select box functionality
-function enqueue_custom_script() {
-    wp_enqueue_script('custom-ajax-filter', get_template_directory_uri() . '/custom-ajax-filter.js', array('jquery'), '1.0', true );
-    wp_localize_script('custom-ajax-filter', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' )));
-}
-add_action('wp_enqueue_scripts', 'enqueue_custom_script');
 
 
 
 // AJAX handler function
 function filter_products() {
-    $category = $_POST['category'];
+    $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
     $min_price = isset($_POST['min_price']) ? floatval($_POST['min_price']) : 0;
     $max_price = isset($_POST['max_price']) ? floatval($_POST['max_price']) : 50000;
 
@@ -327,7 +279,13 @@ add_action('wp_ajax_filter_products', 'filter_products');
 add_action('wp_ajax_nopriv_filter_products', 'filter_products'); 
 
 
-// Add select box before shop loop
+//add price range slider in shop page.
+function custom_price_range_slider() {
+    get_template_part('price-range');
+}
+add_action('woocommerce_before_shop_loop', 'custom_price_range_slider');
+
+// Add select box 
 function add_category_filter_before_shop_loop() {
 	get_template_part('select-category');
 }
