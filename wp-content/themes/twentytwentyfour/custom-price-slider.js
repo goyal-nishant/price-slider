@@ -46,3 +46,5 @@ jQuery(document).ready(function($) {
         $('.custom-products-result').text('Showing all ' + totalCount + ' results');
     }
 });
+
+    

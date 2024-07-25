@@ -230,7 +230,7 @@ add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
 
 
-// AJAX handler function
+
 function filter_products() {
     $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
     $min_price = isset($_POST['min_price']) ? floatval($_POST['min_price']) : 0;
@@ -250,17 +250,19 @@ function filter_products() {
         )
     );
 
-	if (!empty($category)) {
+    if (!empty($category)) {
         $args['tax_query'] = array(
             array(
                 'taxonomy' => 'product_cat',
-                'field' => 'slug',
+                'field' => 'slug',	
                 'terms' => $category,
             ),
         );
     }
 
     $products_query = new WP_Query($args);
+
+    ob_start();
 
     if ($products_query->have_posts()) {
         while ($products_query->have_posts()) {
@@ -272,6 +274,10 @@ function filter_products() {
     }
 
     wp_reset_postdata();
+
+    $response = ob_get_clean();
+
+    echo $response;
 
     die();
 }
