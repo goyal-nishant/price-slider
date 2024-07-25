@@ -296,3 +296,5 @@ function add_category_filter_before_shop_loop() {
 	get_template_part('select-category');
 }
 add_action('woocommerce_before_shop_loop', 'add_category_filter_before_shop_loop');
+
+//how w can take pull
