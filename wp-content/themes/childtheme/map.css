@@ -1,0 +1,95 @@
+/* Container Styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+}
+
+/* Filter Container Styles */
+#filter-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #f7f7f7; /* Light grey background */
+    border-bottom: 2px solid #ddd;
+}
+
+.filter-btn {
+    margin: 0 8px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007bff; /* Blue background */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.filter-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+}
+
+/* Layout Container Styles */
+#layout-container {
+    display: flex;
+    flex: 1;
+    margin: 5px;
+}
+
+/* Button Container Styles */
+#button-container {
+    width: 30%;
+    max-height: 50vh; /* Maximum height equal to half of the viewport height */
+    padding: 10px;
+    background-color: #ffffff;
+    overflow-y: auto; /* Enables vertical scroll */
+    border-right: 2px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+#button-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#button-container li {
+    margin-bottom: 10px;
+}
+
+#button-container button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+    background-color: #f8f9fa; /* Light grey background */
+    color: #333333; /* Dark text color */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+#button-container button:hover {
+    background-color: #e2e6ea; /* Slightly darker grey on hover */
+    color: #000000; /* Darker text color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+/* Map Container Styles */
+#map-container {
+    width: 70%;
+    height: 50vh; /* Height of map equal to half of the viewport height */
+    padding: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
